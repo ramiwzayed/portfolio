@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,15 +16,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
-
 class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey _homeKey = GlobalKey();
   final GlobalKey _heroKey = GlobalKey();
@@ -35,8 +29,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey _workKey = GlobalKey();
   final GlobalKey _experienceKey = GlobalKey();
   final GlobalKey _contactKey = GlobalKey();
-
-
   void _scrollToSection(GlobalKey key) {
     final context = key.currentContext;
     if (context != null) {
@@ -47,7 +39,6 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,10 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text('Hero', style: TextStyle(color: Colors.black)),
           ),
           TextButton(
-            onPressed: () => _scrollToSection(_skillKey), // Corrected Key Name
-            child: const Text('Skills', style: TextStyle(color: Colors.black)),
-          ),
-          TextButton(
             onPressed: () => _scrollToSection(_workKey),
             child: const Text('Work', style: TextStyle(color: Colors.black)),
           ),
@@ -77,11 +64,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(color: Colors.black)),
           ),
           TextButton(
+            onPressed: () => _scrollToSection(_skillKey), // Corrected Key Name
+            child: const Text('Skills', style: TextStyle(color: Colors.black)),
+          ),
+          TextButton(
             onPressed: () => _scrollToSection(_contactKey),
             child: const Text('Contact', style: TextStyle(color: Colors.black)),
           ),
         ],
-
       ),
       body: Center(
         child: Column(
@@ -104,9 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-
     );
   }
-
-
 }
