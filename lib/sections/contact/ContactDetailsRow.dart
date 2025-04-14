@@ -21,7 +21,7 @@ class ContactDetailsRow extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: iconColor.withOpacity(0.1),
+            color: iconColor.withAlpha(80),
             shape: BoxShape.circle,
           ),
           child: Icon(

@@ -8,39 +8,43 @@ class ContactSection extends StatelessWidget {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
-        margin: const EdgeInsets.all(16),
-        padding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        padding: const EdgeInsets.all(24),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            // Background gradient
-            colors: [Colors.blue.shade100, Colors.blue.shade50],
+            colors: [Colors.blue.shade200, Colors.blue.shade50],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: const [
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
             BoxShadow(
-              color: Colors.black26,
-              blurRadius: 10,
-              offset: Offset(0, 4),
+              color: Colors.grey.withAlpha(80),
+              blurRadius: 12,
+              spreadRadius: 4,
+              offset: Offset(0, 8), // Subtle shadow for elevation
             ),
           ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
+            // Section Title
             Text(
-              'Contact Me',
+              'Get in Touch',
               style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
+                fontSize: 28,
+                fontWeight: FontWeight.w700,
                 color: Colors.blue.shade900,
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 12),
+            const SizedBox(height: 24),
+
             ContactDetailsRow(
               icon: Icons.location_on,
-              label: 'Ramallah',
+              label: 'Ramallah, Palestine',
               iconColor: Colors.orange.shade400,
               textColor: Colors.black87,
             ),
@@ -54,26 +58,39 @@ class ContactSection extends StatelessWidget {
             const SizedBox(height: 16),
             ContactDetailsRow(
               icon: Icons.phone,
-              label: '+97097876633',
+              label: '+970-978-76633',
               iconColor: Colors.green.shade600,
               textColor: Colors.black87,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
             Center(
               child: ElevatedButton.icon(
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Contact action triggered!')),
+                    SnackBar(
+                      content: Text(
+                        'Thank you for getting in touch!',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      backgroundColor: Colors.blue.shade600,
+                      duration: Duration(seconds: 2),
+                    ),
                   );
                 },
-                icon: const Icon(Icons.message, color: Colors.white),
-                label: const Text('Get in Touch'),
+                icon: Icon(Icons.message, color: Colors.white),
+                label: Text(
+                  'Contact Me',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  backgroundColor: Colors.blueAccent.shade700,
+                  elevation: 6,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 16,
                   ),
                 ),
               ),

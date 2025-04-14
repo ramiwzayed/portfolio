@@ -13,15 +13,15 @@ class ExperienceItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 16.0),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.1), // Translucent background
+        color: Colors.white.withAlpha(80), // Translucent background
         borderRadius: BorderRadius.circular(15.0),
         border: Border.all(
-          color: Colors.blueAccent.withOpacity(0.3), // Subtle border effect
+          color: Colors.blueAccent.withAlpha(80), // Subtle border effect
           width: 1.5,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.15),
+            color: Colors.black.withAlpha(80),
             blurRadius: 12, // Smooth shadow
             offset: const Offset(0, 6),
           ),
@@ -30,7 +30,7 @@ class ExperienceItem extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            backgroundColor: Colors.blueAccent.withOpacity(0.8),
+            backgroundColor: Colors.blueAccent.withAlpha(80),
             radius: 20.0, // Circle icon size
             child: const Icon(
               Icons.star_rounded,

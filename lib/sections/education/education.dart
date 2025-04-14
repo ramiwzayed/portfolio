@@ -8,11 +8,11 @@ class EducationSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.white, // Background color for the card
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.3), // Light shadow for the card
+            color: Colors.grey.withAlpha(80),
             spreadRadius: 2,
             blurRadius: 8,
             offset: const Offset(0, 6),
@@ -22,23 +22,29 @@ class EducationSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section Title
-          const Text(
-            'Education',
-            style: TextStyle(
-              fontSize: 26,
-              fontFamily: 'Roboto', // Use a custom font for better design
-              fontWeight: FontWeight.bold,
-              color: Colors.blueAccent, // Accent color for the title
-            ),
+          // Row with Image and Title
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(width: 12), // Space between image and title
+              const Text(
+                'Education',
+                style: TextStyle(
+                  fontSize: 26,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 12), // Space between title section and content
 
-          // Use the new widget for education items
+          // Education Content
           const EducationItem(
             degree: 'Information Technology and Communication',
             institution: 'Al Quds Open University (2021 - 2025)',
-            iconColor: Colors.blueAccent, // Custom icon color
+            iconColor: Colors.blueAccent,
           ),
         ],
       ),

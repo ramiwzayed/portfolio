@@ -45,7 +45,6 @@ class SkillsSection extends StatelessWidget {
   }
 
   List<Widget> _buildSkillChips() {
-    // List of skills
     const skills = [
       'HTML',
       'CSS/SCSS',
@@ -54,8 +53,6 @@ class SkillsSection extends StatelessWidget {
       'Python',
       'C++',
     ];
-
-    // Use SkillChip widget
     return skills.map((skill) => SkillChip(skill: skill)).toList();
   }
 }
