@@ -1,7 +1,67 @@
 import 'package:flutter/material.dart';
 
-// todo: Merge with the hero & delete
-class homeSection extends StatelessWidget {
+class HeroSection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return HeroContent();
+  }
+}
+
+class HeroContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+      alignment: Alignment.topLeft,
+      color: Colors.deepPurple,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Displaying an image
+          Image.network(
+            'https://images.pexels.com/photos/3651752/pexels-photo-3651752.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
+            height: 200,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
+
+          const SizedBox(height: 200),
+
+          // Button
+          ElevatedButton(
+            child: const Text('Click Me'),
+            onPressed: () {
+              print('Welcome Rami');
+            },
+          ),
+
+          // Section Title
+          const Text(
+            'Hero Section\n',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+
+          // Section Description
+          const Text(
+            'I’m enthusiastic and responsible. I pay attention to details, and I’m adaptable to all challenging situations. Moreover, I am willing to learn new skills to expand my knowledge and experience.',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HomeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +94,7 @@ class homeSection extends StatelessWidget {
                   ),
                   const SizedBox(height: 16.0),
                   const Text(
-                    'the experience has significantly '
+                    'The experience has significantly '
                     'contributed to both my personal and professional growth. Being part of a company '
                     'that values innovation, efficiency, and teamwork has provided me with valuable insights '
                     'into how successful organizations operate.',

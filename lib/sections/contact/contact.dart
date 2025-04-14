@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'ContactDetailsRow.dart';
+
 class ContactSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
-        margin: EdgeInsets.all(16),
-        padding: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             // Background gradient
@@ -16,7 +18,7 @@ class ContactSection extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
           borderRadius: BorderRadius.circular(16),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black26,
               blurRadius: 10,
@@ -35,40 +37,41 @@ class ContactSection extends StatelessWidget {
                 color: Colors.blue.shade900,
               ),
             ),
-            SizedBox(height: 20),
-            contactDetailsRow(
+            const SizedBox(height: 20),
+            ContactDetailsRow(
               icon: Icons.location_on,
               label: 'Ramallah',
               iconColor: Colors.orange.shade400,
               textColor: Colors.black87,
             ),
-            SizedBox(height: 16),
-            contactDetailsRow(
+            const SizedBox(height: 16),
+            ContactDetailsRow(
               icon: Icons.email,
               label: 'ramiwzayed@gmail.com',
               iconColor: Colors.redAccent,
               textColor: Colors.black87,
             ),
-            SizedBox(height: 16),
-            contactDetailsRow(
+            const SizedBox(height: 16),
+            ContactDetailsRow(
               icon: Icons.phone,
               label: '+97097876633',
               iconColor: Colors.green.shade600,
               textColor: Colors.black87,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
               child: ElevatedButton.icon(
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Contact action triggered!')),
+                    const SnackBar(content: Text('Contact action triggered!')),
                   );
                 },
-                icon: Icon(Icons.message, color: Colors.white),
-                label: Text('Get in Touch'),
+                icon: const Icon(Icons.message, color: Colors.white),
+                label: const Text('Get in Touch'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent,
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -78,40 +81,6 @@ class ContactSection extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  // todo: move to new file
-  Widget contactDetailsRow({
-    required IconData icon,
-    required String label,
-    required Color iconColor,
-    required Color textColor,
-  }) {
-    return Row(
-      children: [
-        Container(
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: iconColor.withOpacity(0.1),
-            shape: BoxShape.circle,
-          ),
-          child: Icon(
-            icon,
-            color: iconColor,
-            size: 28,
-          ),
-        ),
-        SizedBox(width: 16),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 18,
-            color: textColor,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ],
     );
   }
 }
