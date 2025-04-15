@@ -10,8 +10,15 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool _isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,31 +26,55 @@ class MyApp extends StatelessWidget {
       title: 'Flutter',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.light,
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter'),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.dark,
+        ),
+      ),
+      themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      home: MyHomePage(
+        title: 'Flutter',
+        isDarkMode: _isDarkMode,
+        onThemeChange: (value) {
+          setState(() {
+            _isDarkMode = value;
+          });
+        },
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({
+    super.key,
+    required this.title,
+    required this.isDarkMode,
+    required this.onThemeChange,
+  });
 
   final String title;
+  final bool isDarkMode;
+  final ValueChanged<bool> onThemeChange;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // Define section keys
   final Map<String, GlobalKey> _sectionKeys = {
-    'Home': GlobalKey(),
+    'Hero': GlobalKey(),
     'Work': GlobalKey(),
+    'Education': GlobalKey(),
     'Experience': GlobalKey(),
     'Skills': GlobalKey(),
     'Contact': GlobalKey(),
-    'Education': GlobalKey(),
   };
 
   void _scrollToSection(String section) {
@@ -65,7 +96,6 @@ class _MyHomePageState extends State<MyHomePage> {
           'Flutter',
           style: TextStyle(color: Colors.black),
         ),
-        iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: _buildNavBarActions(),
       ),
@@ -95,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.zero,
         children: [
           const DrawerHeader(
-            decoration: BoxDecoration(color: Colors.deepPurple),
+            decoration: BoxDecoration(color: Colors.blueAccent),
             child: Text(
               'Menu',
               style: TextStyle(
@@ -113,6 +143,22 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
           ),
+          const Divider(),
+          SwitchListTile(
+            title: Text(
+              'Dark Mode',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontSize: 16,
+              ),
+            ),
+            secondary: Icon(
+              widget.isDarkMode ? Icons.dark_mode : Icons.light_mode,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+            value: widget.isDarkMode,
+            onChanged: widget.onThemeChange,
+          ),
         ],
       ),
     );
@@ -121,8 +167,8 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _buildSections() {
     return [
       Container(
-        key: _sectionKeys['Home'],
-        child: HomeSection(),
+        key: _sectionKeys['Hero'],
+        child: HeroSection(),
       ),
       Container(
         key: _sectionKeys['Work'],

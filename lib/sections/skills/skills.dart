@@ -22,29 +22,54 @@ class SkillsSection extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        // Centers overall content
+        crossAxisAlignment: CrossAxisAlignment.center,
+        // Vertically aligns items
         children: [
-          const Text(
-            'Skills & Expertise',
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+          // The image on the left
+          Image.asset(
+            'assets/person_small.png',
+            height: 500,
+            width: 500,
           ),
-          const SizedBox(height: 16.0),
-          Wrap(
-            spacing: 12.0,
-            runSpacing: 12.0,
-            children: _buildSkillChips(),
+          const SizedBox(width: 24.0), // Space between the image and the texts
+          // Text and skills section
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              // Space from edge
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                // Centers text content vertically
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Skills & Expertise',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  // Skill chips arranged vertically
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: _buildSkillWidgets(),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  List<Widget> _buildSkillChips() {
+  // Helper method to build skill chips vertically
+  List<Widget> _buildSkillWidgets() {
     const skills = [
       'HTML',
       'CSS/SCSS',
@@ -53,6 +78,13 @@ class SkillsSection extends StatelessWidget {
       'Python',
       'C++',
     ];
-    return skills.map((skill) => SkillChip(skill: skill)).toList();
+
+    return skills
+        .map((skill) => Padding(
+              padding:
+                  const EdgeInsets.only(bottom: 8.0), // Space between skills
+              child: SkillChip(skill: skill),
+            ))
+        .toList();
   }
 }

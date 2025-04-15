@@ -7,20 +7,19 @@ class ExperienceSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 25.0),
       decoration: BoxDecoration(
-        // Gradient background for the section
         gradient: const LinearGradient(
           colors: [
-            Color(0xFF8E2DE2), // Purple shade
-            Color(0xFF4A00E0), // Darker tone of blue
+            Color(0xFF8E2DE2),
+            Color(0xFF4A00E0),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(20.0), // Rounded corners
+        borderRadius: BorderRadius.circular(20.0),
         boxShadow: [
           BoxShadow(
             color: Colors.transparent.withBlue(5),
-            blurRadius: 20, // Smooth elevated shadow
+            blurRadius: 20,
             offset: const Offset(0, 8),
           ),
         ],
