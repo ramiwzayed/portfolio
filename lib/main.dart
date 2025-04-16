@@ -90,6 +90,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Adjust padding based on the screen width
+    final horizontalPadding = !isMobile() ? 150.0 : 16.0;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -101,8 +104,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       drawer: _buildDrawer(),
       body: SingleChildScrollView(
-        child: Column(
-          children: _buildSections(),
+        child: Padding(
+          padding:
+              EdgeInsets.fromLTRB(horizontalPadding, 0, horizontalPadding, 0),
+          child: Column(
+            children: _buildSections(),
+          ),
         ),
       ),
     );
@@ -191,5 +198,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ContactSection(),
       ),
     ];
+  }
+
+  bool isMobile() {
+    // Get screen width and height
+    final screenWidth = MediaQuery.of(context).size.width;
+    return screenWidth <= 600;
   }
 }

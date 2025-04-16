@@ -5,21 +5,22 @@ class SkillChip extends StatelessWidget {
 
   const SkillChip({
     required this.skill,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Chip(
-      avatar: const Icon(
+      avatar: Icon(
         Icons.code,
-        color: Colors.white,
+        color: isDarkMode ? Colors.white : Colors.black,
         size: 16,
       ),
       label: Text(
         skill,
-        style: const TextStyle(
-          color: Colors.white,
+        style: TextStyle(
+          color: isDarkMode ? Colors.white : Colors.black,
           fontWeight: FontWeight.bold,
         ),
       ),

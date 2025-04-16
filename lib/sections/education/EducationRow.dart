@@ -9,20 +9,21 @@ class EducationItem extends StatelessWidget {
   const EducationItem({
     required this.degree,
     required this.institution,
-    this.icon = Icons.school, // Default icon for education
-    this.iconColor = Colors.blueAccent, // Default color for the icon
-    Key? key,
-  }) : super(key: key);
+    this.icon = Icons.school,
+    this.iconColor = Colors.blueAccent,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Icon(
-          icon, // Icon to represent education
+          icon,
           size: 30,
-          color: iconColor.withRed(20), // Match with the section title
+          color: iconColor.withRed(20),
         ),
         const SizedBox(width: 12),
         Expanded(
@@ -31,10 +32,10 @@ class EducationItem extends StatelessWidget {
             children: [
               Text(
                 degree,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
-                  color: Colors.black87,
+                  color: isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
               const SizedBox(height: 4),

@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 
 class WorkSection extends StatelessWidget {
+  const WorkSection({super.key});
+
   @override
   Widget build(BuildContext context) {
-    // Detect if dark mode is enabled
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 255.0),
-      // Add space on left and right
+      padding: const EdgeInsets.symmetric(horizontal: 32.0),
       child: Container(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Title
             Text(
               'My Work Experience',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: isDarkMode
-                    ? Colors.white
-                    : Colors.black, // Adjusted dynamically
+                color: isDarkMode ? Colors.white : Colors.black,
               ),
             ),
             const SizedBox(height: 16.0),
@@ -34,11 +30,10 @@ class WorkSection extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 height: 1.5,
-                color: isDarkMode
-                    ? Colors.white
-                    : Colors.black, // Adjusted dynamically
+                color: isDarkMode ? Colors.white : Colors.black,
               ),
             ),
+            const SizedBox(height: 32.0),
           ],
         ),
       ),

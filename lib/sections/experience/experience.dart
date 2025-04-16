@@ -2,41 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/sections/experience/ExperienceItems.dart';
 
 class ExperienceSection extends StatelessWidget {
+  const ExperienceSection({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 25.0),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xFF8E2DE2),
-            Color(0xFF4A00E0),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(20.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.transparent.withBlue(5),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Experience',
             style: TextStyle(
               fontSize: 34,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: isDarkMode ? Colors.white : Colors.black,
               letterSpacing: 1.2,
               shadows: [
                 Shadow(
-                  color: Colors.black26,
+                  color: isDarkMode ? Colors.white : Colors.black,
                   blurRadius: 8, // Lifted appearance for the title
                   offset: Offset(2, 2),
                 ),
@@ -44,11 +29,13 @@ class ExperienceSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12.0),
-          const Text(
+          Text(
             'Here are some of the skills and tools I’ve worked with:',
             style: TextStyle(
               fontSize: 18,
-              color: Colors.white70,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
             ),
           ),
           const SizedBox(height: 24.0),
