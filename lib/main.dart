@@ -114,17 +114,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  List<Widget> _buildNavBarActions() {
-    return _sectionKeys.keys
-        .map(
-          (section) => TextButton(
-            onPressed: () => _scrollToSection(section),
-            child: Text(section, style: const TextStyle(color: Colors.black)),
-          ),
-        )
-        .toList();
-  }
-
   Widget _buildDrawer() {
     return Drawer(
       child: ListView(
@@ -168,6 +157,17 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+  }
+
+  List<Widget> _buildNavBarActions() {
+    return _sectionKeys.keys
+        .map(
+          (section) => TextButton(
+            onPressed: () => _scrollToSection(section),
+            child: Text(section, style: const TextStyle(color: Colors.black)),
+          ),
+        )
+        .toList();
   }
 
   List<Widget> _buildSections() {
