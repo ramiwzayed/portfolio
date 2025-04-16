@@ -9,32 +9,26 @@ class EducationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     // Get the current theme brightness
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
     return Container(
-      padding: const EdgeInsets.all(32.0),
+      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Row with Image and Title
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(width: 12), // Space between image and title
+              const SizedBox(width: 12),
               Text(
                 'Education',
                 style: TextStyle(
                   fontSize: 26,
-                  fontFamily: 'Roboto',
                   fontWeight: FontWeight.bold,
-                  color: isDarkMode
-                      ? Colors.white
-                      : Colors.black, // Dynamic text color
+                  color: isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 12), // Space between title section and content
-
+          const SizedBox(height: 12),
           // Education Content
           EducationItem(
             degree: 'Information Technology and Communication',
