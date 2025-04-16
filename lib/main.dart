@@ -72,8 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'Hero': GlobalKey(),
     'Work': GlobalKey(),
     'Education': GlobalKey(),
-    'Experience': GlobalKey(),
     'Skills': GlobalKey(),
+    'Experience': GlobalKey(),
     'Contact': GlobalKey(),
   };
 
@@ -90,19 +90,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Adjust padding based on the screen width
     final horizontalPadding = !isMobile() ? 150.0 : 16.0;
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Flutter',
-          style: TextStyle(color: Colors.black),
+        title: Image.asset(
+          'assets/Rlogo.png',
+          width: 55,
+          height: 55,
         ),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        actions: _buildNavBarActions(),
+        actions: !isMobile() ? _buildNavBarActions() : null,
       ),
-      drawer: _buildDrawer(),
+      drawer: isMobile() ? _buildDrawer() : null,
       body: SingleChildScrollView(
         child: Padding(
           padding:
@@ -131,12 +130,12 @@ class _MyHomePageState extends State<MyHomePage> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
+          DrawerHeader(
             decoration: BoxDecoration(color: Colors.blueAccent),
             child: Text(
               'Menu',
               style: TextStyle(
-                color: Colors.white,
+                color: widget.isDarkMode ? Colors.white : Colors.black,
                 fontSize: 24,
               ),
             ),

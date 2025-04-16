@@ -39,7 +39,7 @@ class SkillsSection extends StatelessWidget {
                       height: 300,
                       width: 300,
                     ),
-                    const SizedBox(height: 24.0),
+                    const SizedBox(height: 48.0),
                     _buildTextContent(isDarkMode),
                   ],
                 ),

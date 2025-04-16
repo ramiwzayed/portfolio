@@ -35,6 +35,7 @@ class EducationSection extends StatelessWidget {
             institution: 'Al Quds Open University (2021 - 2025)',
             iconColor: Colors.blueAccent,
           ),
+          SizedBox(height: 24.0),
         ],
       ),
     );
