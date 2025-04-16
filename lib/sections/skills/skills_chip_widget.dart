@@ -24,9 +24,6 @@ class SkillChip extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      backgroundColor: Colors.deepPurpleAccent,
-      elevation: 4,
-      shadowColor: Colors.black45,
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
