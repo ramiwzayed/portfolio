@@ -4,6 +4,7 @@ class DrawerMenu extends StatelessWidget {
   final GlobalKey homeKey;
   final GlobalKey workKey;
   final GlobalKey experienceKey;
+  final GlobalKey skillKey;
   final GlobalKey contactKey;
   final GlobalKey educationKey;
 
@@ -12,6 +13,7 @@ class DrawerMenu extends StatelessWidget {
     required this.homeKey,
     required this.workKey,
     required this.experienceKey,
+    required this.skillKey,
     required this.contactKey,
     required this.educationKey,
   });
@@ -34,11 +36,7 @@ class DrawerMenu extends StatelessWidget {
       padding: EdgeInsets.zero,
       children: [
         DrawerHeader(
-          decoration: BoxDecoration(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Colors.white
-                : Colors.black,
-          ),
+          decoration: const BoxDecoration(color: Colors.deepPurple),
           child: const Text(
             'Menu',
             style: TextStyle(
@@ -58,6 +56,10 @@ class DrawerMenu extends StatelessWidget {
         ListTile(
           title: const Text('Experiences'),
           onTap: () => _scrollToSection(context, experienceKey),
+        ),
+        ListTile(
+          title: const Text('Skills'),
+          onTap: () => _scrollToSection(context, skillKey),
         ),
         ListTile(
           title: const Text('Contact'),

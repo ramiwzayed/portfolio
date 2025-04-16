@@ -42,7 +42,27 @@ class HeroSection extends StatelessWidget {
                     color: isDarkMode ? Colors.white : Colors.black,
                   ),
                 ),
-                const SizedBox(height: 8.0),
+                const SizedBox(height: 16.0),
+                ElevatedButton(
+                  onPressed: () => print('Welcome'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0,
+                      vertical: 12.0,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                  child: Text(
+                    'Get Started',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: isDarkMode ? Colors.white : Colors.black,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

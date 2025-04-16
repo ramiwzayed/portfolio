@@ -3,6 +3,7 @@ import 'package:portfolio/sections/contact/contact.dart';
 import 'package:portfolio/sections/education/education.dart';
 import 'package:portfolio/sections/experience/experience.dart';
 import 'package:portfolio/sections/home/home.dart';
+import 'package:portfolio/sections/skills/skills.dart';
 import 'package:portfolio/sections/work/work.dart';
 
 void main() {
@@ -26,14 +27,13 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Theme.of(context).brightness == Brightness.dark
-              ? Colors.white
-              : Colors.black,
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.light,
         ),
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.black,
+          seedColor: Colors.deepPurple,
           brightness: Brightness.dark,
         ),
       ),
@@ -72,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Hero': GlobalKey(),
     'Work': GlobalKey(),
     'Education': GlobalKey(),
+    'Skills': GlobalKey(),
     'Experience': GlobalKey(),
     'Contact': GlobalKey(),
   };
@@ -184,13 +185,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: EducationSection(),
       ),
       Container(
+        key: _sectionKeys['Skills'],
+        child: SkillsSection(),
+      ),
+      Container(
         key: _sectionKeys['Experience'],
         child: ExperienceSection(),
       ),
       Container(
         key: _sectionKeys['Contact'],
         child: ContactSection(),
-      )
+      ),
     ];
   }
 
