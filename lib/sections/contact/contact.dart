@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'ContactDetailsRow.dart';
 
@@ -7,8 +9,8 @@ class ContactSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final screenWidth = MediaQuery.of(context).size.width;
-
     final isSmallScreen = screenWidth < 600;
 
     return Container(
@@ -21,7 +23,7 @@ class ContactSection extends StatelessWidget {
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w700,
-              color: Colors.blue.shade900,
+              color: isDarkMode ? Colors.white : Colors.black,
             ),
           ),
           const SizedBox(height: 24),
@@ -50,28 +52,59 @@ class ContactSection extends StatelessWidget {
                   textColor: Colors.black87,
                 ),
                 const SizedBox(height: 16),
-                ContactDetailsRow(
-                  icon: Icons.web_asset,
-                  label: 'ramiwzayed',
-                  iconColor: Colors.red.shade900,
-                  textColor: Colors.black,
+                GestureDetector(
+                  onTap: () async {
+                    const instagramUrl =
+                        'https://www.instagram.com/ramiwzayed/';
+                    if (await canLaunchUrl(Uri.parse(instagramUrl))) {
+                      await launchUrl(Uri.parse(instagramUrl),
+                          mode: LaunchMode.externalApplication);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Could not launch Instagram"),
+                        ),
+                      );
+                    }
+                  },
+                  child: ContactDetailsRow(
+                    icon: FontAwesomeIcons.instagram,
+                    label: 'ramiwzayed',
+                    iconColor: Colors.purple.shade400,
+                    textColor: Colors.black87,
+                  ),
                 ),
                 const SizedBox(height: 16),
-                ContactDetailsRow(
-                  icon: Icons.hub_rounded,
-                  label: 'ramiwzayed',
-                  iconColor: Colors.black,
-                  textColor: Colors.black87,
+                GestureDetector(
+                  onTap: () async {
+                    const githubUrl = 'https://github.com/ramiwzayed';
+                    if (await canLaunchUrl(Uri.parse(githubUrl))) {
+                      await launchUrl(Uri.parse(githubUrl),
+                          mode: LaunchMode.externalApplication);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Could not launch GitHub"),
+                        ),
+                      );
+                    }
+                  },
+                  child: ContactDetailsRow(
+                    icon: FontAwesomeIcons.github,
+                    label: 'ramiwzayed',
+                    iconColor: isDarkMode ? Colors.white : Colors.black,
+                    textColor: Colors.black87,
+                  ),
                 ),
               ],
             )
           else
             Wrap(
-              spacing: 16, // Horizontal spacing between items
-              runSpacing: 16, // Vertical spacing between rows
+              spacing: 16,
+              runSpacing: 16,
               children: [
                 SizedBox(
-                  width: 250, // Ensure each item has enough space
+                  width: 250,
                   child: ContactDetailsRow(
                     icon: Icons.location_on,
                     label: 'Ramallah, Palestine',
@@ -84,7 +117,7 @@ class ContactSection extends StatelessWidget {
                   child: ContactDetailsRow(
                     icon: Icons.email,
                     label: 'ramiwzayed@gmail.com',
-                    iconColor: Colors.redAccent,
+                    iconColor: Colors.lightBlueAccent,
                     textColor: Colors.black87,
                   ),
                 ),
@@ -99,51 +132,55 @@ class ContactSection extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 250,
-                  child: ContactDetailsRow(
-                    icon: Icons.web_asset,
-                    label: 'ramiwzayed',
-                    iconColor: Colors.red.shade900,
-                    textColor: Colors.black,
+                  child: GestureDetector(
+                    onTap: () async {
+                      const instagramUrl =
+                          'https://www.instagram.com/ramiwzayed/';
+                      if (await canLaunchUrl(Uri.parse(instagramUrl))) {
+                        await launchUrl(Uri.parse(instagramUrl),
+                            mode: LaunchMode.externalApplication);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Could not launch Instagram"),
+                          ),
+                        );
+                      }
+                    },
+                    child: ContactDetailsRow(
+                      icon: FontAwesomeIcons.instagram,
+                      label: 'ramiwzayed',
+                      iconColor: Colors.red.withAlpha(255),
+                      textColor: Colors.black,
+                    ),
                   ),
                 ),
                 SizedBox(
                   width: 250,
-                  child: ContactDetailsRow(
-                    icon: Icons.hub_rounded,
-                    label: 'ramiwzayed',
-                    iconColor: Colors.black,
-                    textColor: Colors.black87,
+                  child: GestureDetector(
+                    onTap: () async {
+                      const githubUrl = 'https://github.com/ramiwzayed';
+                      if (await canLaunchUrl(Uri.parse(githubUrl))) {
+                        await launchUrl(Uri.parse(githubUrl),
+                            mode: LaunchMode.externalApplication);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Could not launch GitHub"),
+                          ),
+                        );
+                      }
+                    },
+                    child: ContactDetailsRow(
+                      icon: FontAwesomeIcons.github,
+                      label: 'ramiwzayed',
+                      iconColor: isDarkMode ? Colors.white : Colors.black,
+                      textColor: Colors.white,
+                    ),
                   ),
                 ),
               ],
             ),
-          const SizedBox(height: 36),
-          Center(
-            child: ElevatedButton.icon(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'Thank you for getting in touch!',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    backgroundColor: Colors.grey,
-                    duration: const Duration(seconds: 2),
-                    action: SnackBarAction(
-                      label: 'Close',
-                      onPressed: () {},
-                    ),
-                  ),
-                );
-              },
-              icon: Icon(Icons.send),
-              label: Text('Contact Us'),
-              style: ElevatedButton.styleFrom(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              ),
-            ),
-          ),
         ],
       ),
     );
