@@ -12,6 +12,7 @@ class HeroSection extends StatelessWidget {
       // Consistent padding
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
             flex: 1,
@@ -21,7 +22,7 @@ class HeroSection extends StatelessWidget {
                 Text(
                   'Flutter Designer',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 32,
                     fontWeight: FontWeight.bold,
                     color: isDarkMode ? Colors.white : Colors.black,
                   ),
@@ -30,7 +31,8 @@ class HeroSection extends StatelessWidget {
                 Text(
                   'Rami \nZayed',
                   style: TextStyle(
-                    fontSize: 48,
+                    fontFamily: 'Orbitron',
+                    fontSize: 52,
                     color: isDarkMode ? Colors.white : Colors.black,
                   ),
                 ),

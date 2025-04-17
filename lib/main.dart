@@ -69,7 +69,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final Map<String, GlobalKey> _sectionKeys = {
-    'Hero': GlobalKey(),
     'Work': GlobalKey(),
     'Education': GlobalKey(),
     'Experience': GlobalKey(),
@@ -92,12 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final horizontalPadding = !isMobile() ? 150.0 : 16.0;
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset(
-          'assets/Rlogo.png',
-          width: 55,
-          height: 55,
-        ),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.white,
         actions: !isMobile() ? _buildNavBarActions() : null,
       ),
       drawer: isMobile() ? _buildDrawer() : null,

@@ -13,6 +13,7 @@ class EducationSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -21,7 +22,7 @@ class EducationSection extends StatelessWidget {
               Text(
                 'Education',
                 style: TextStyle(
-                  fontSize: 26,
+                  fontSize: 32,
                   fontWeight: FontWeight.bold,
                   color: isDarkMode ? Colors.white : Colors.black,
                 ),
@@ -29,13 +30,52 @@ class EducationSection extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          // Education Content
-          EducationItem(
-            degree: 'Information Technology and Communication',
-            institution: 'Al Quds Open University (2021 - 2025)',
-            iconColor: Colors.blueAccent,
+          // Group Education Items in rows
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Flexible(
+                    child: EducationItem(
+                      degree: 'Information Technology and Communication',
+                      institution: 'Al Quds Open University (2021 - 2025)',
+                      iconColor: Colors.blueAccent,
+                    ),
+                  ),
+                  SizedBox(width: 16.0), // Spacing between two items in a row
+                  Flexible(
+                    child: EducationItem(
+                      degree: 'Information Technology and Communication',
+                      institution: 'Al Quds Open University (2021 - 2025)',
+                      iconColor: Colors.blueAccent,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24.0), // Space between rows
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Flexible(
+                    child: EducationItem(
+                      degree: 'Information Technology and Communication',
+                      institution: 'Al Quds Open University (2021 - 2025)',
+                      iconColor: Colors.blueAccent,
+                    ),
+                  ),
+                  SizedBox(width: 16.0), // Spacing between two items in a row
+                  Flexible(
+                    child: EducationItem(
+                      degree: 'Information Technology and Communication',
+                      institution: 'Al Quds Open University (2021 - 2025)',
+                      iconColor: Colors.blueAccent,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-          SizedBox(height: 24.0),
         ],
       ),
     );
