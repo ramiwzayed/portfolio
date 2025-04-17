@@ -11,17 +11,18 @@ class ContactDetailsRow extends StatelessWidget {
     required this.label,
     required this.iconColor,
     required this.textColor,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    return Column(
       children: [
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: iconColor.withOpacity(0.1),
+            color: iconColor.withAlpha(80),
             shape: BoxShape.circle,
           ),
           child: Icon(
@@ -35,7 +36,7 @@ class ContactDetailsRow extends StatelessWidget {
           label,
           style: TextStyle(
             fontSize: 18,
-            color: textColor,
+            color: isDarkMode ? Colors.white : Colors.black,
             fontWeight: FontWeight.w500,
           ),
         ),

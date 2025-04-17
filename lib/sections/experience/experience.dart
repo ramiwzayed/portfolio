@@ -1,65 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/sections/experience/ExperienceItems.dart';
 
 class ExperienceSection extends StatelessWidget {
+  const ExperienceSection({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 25.0),
-      decoration: BoxDecoration(
-        // Gradient background for the section
-        gradient: const LinearGradient(
-          colors: [
-            Color(0xFF8E2DE2), // Purple shade
-            Color(0xFF4A00E0), // Darker tone of blue
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(20.0), // Rounded corners
-        boxShadow: [
-          BoxShadow(
-            color: Colors.transparent.withBlue(5),
-            blurRadius: 20, // Smooth elevated shadow
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Experience',
-            style: TextStyle(
-              fontSize: 34,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              letterSpacing: 1.2,
-              shadows: [
-                Shadow(
-                  color: Colors.black26,
-                  blurRadius: 8, // Lifted appearance for the title
-                  offset: Offset(2, 2),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12.0),
-          const Text(
-            'Here are some of the skills and tools I’ve worked with:',
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.white70,
-            ),
-          ),
-          const SizedBox(height: 24.0),
-          ..._buildExperienceList(context),
-        ],
-      ),
-    );
-  }
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
-  List<Widget> _buildExperienceList(BuildContext context) {
     const experiences = [
       'Ethical Hacking',
       'Hacking Mobile Devices',
@@ -70,16 +17,58 @@ class ExperienceSection extends StatelessWidget {
       'Game Development',
     ];
 
-    return List.generate(
-      experiences.length,
-      (index) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
-        child: GestureDetector(
-          onTap: () {
-            // Optional: Add action for item click
-          },
-          child: ExperienceItem(
-            experienceText: experiences[index], // Use the reusable widget
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Experience & Skills',
+            style: TextStyle(
+              fontSize: 32.0,
+              fontWeight: FontWeight.bold,
+              color: isDarkMode ? Colors.grey[300] : Colors.grey[800],
+            ),
+          ),
+          const SizedBox(height: 16.0),
+          Wrap(
+            spacing: 8.0,
+            runSpacing: 8.0,
+            children: experiences.map((experience) {
+              return _buildExperienceCard(experience, isDarkMode);
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildExperienceCard(String experience, bool isDarkMode) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        width: 150.0,
+        margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
+          color: isDarkMode ? Colors.grey[800] : Colors.grey[300],
+          boxShadow: [
+            BoxShadow(
+              color: isDarkMode ? Colors.black54 : Colors.grey[400]!,
+              blurRadius: 4.0,
+              offset: const Offset(2, 2),
+            ),
+          ],
+        ),
+        child: Center(
+          child: Text(
+            experience,
+            style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: isDarkMode ? Colors.white : Colors.black,
+            ),
           ),
         ),
       ),

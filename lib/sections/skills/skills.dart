@@ -1,61 +1,57 @@
-import 'package:flutter/material.dart';
-import 'package:portfolio/sections/skills/skills_chip_widget.dart';
-
-class SkillsSection extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Colors.deepPurple, Colors.purpleAccent],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(16.0),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black26,
-            spreadRadius: 2,
-            blurRadius: 10,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Skills & Expertise',
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 16.0),
-          Wrap(
-            spacing: 12.0,
-            runSpacing: 12.0,
-            children: _buildSkillChips(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  List<Widget> _buildSkillChips() {
-    // List of skills
-    const skills = [
-      'HTML',
-      'CSS/SCSS',
-      'JavaScript/TypeScript',
-      'Java',
-      'Python',
-      'C++',
-    ];
-
-    // Use SkillChip widget
-    return skills.map((skill) => SkillChip(skill: skill)).toList();
-  }
-}
+// import 'package:flutter/material.dart';
+// import 'package:portfolio/sections/skills/skills_chip_widget.dart';
+//
+// class SkillsSection extends StatelessWidget {
+//   const SkillsSection({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+//
+//     return _buildTextContent(isDarkMode);
+//   }
+//
+//   Widget _buildTextContent(bool isDarkMode) {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(horizontal: 24.0),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Text(
+//             'Skills & Expertise',
+//             style: TextStyle(
+//               fontSize: 28,
+//               fontWeight: FontWeight.bold,
+//               color: isDarkMode ? Colors.white : Colors.black,
+//             ),
+//           ),
+//           const SizedBox(height: 16.0),
+//           Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: _buildSkillWidgets(),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+//
+//   List<Widget> _buildSkillWidgets() {
+//     const skills = [
+//       'HTML',
+//       'CSS/SCSS',
+//       'JavaScript/TypeScript',
+//       'Java',
+//       'Python',
+//       'C++',
+//     ];
+//
+//     return skills
+//         .map((skill) => Padding(
+//               padding:
+//                   const EdgeInsets.only(bottom: 8.0), // Space between skills
+//               child: SkillChip(skill: skill),
+//             ))
+//         .toList();
+//   }
+// }
