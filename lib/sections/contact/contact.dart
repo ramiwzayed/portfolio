@@ -12,18 +12,18 @@ class ContactSection extends StatelessWidget {
     final crossAxisCount = screenWidth > 600 ? 3 : (screenWidth > 400 ? 2 : 1);
     final List<Map<String, dynamic>> contactDetails = [
       {
-        'icon': Icons.location_on,
+        'icon': FontAwesomeIcons.mapLocationDot,
         'label': 'Ramallah, Palestine',
         'iconColor': Colors.orange.shade400,
       },
       {
-        'icon': Icons.email,
+        'icon': FontAwesomeIcons.envelope,
         'label': 'ramiwzayed@gmail.com',
         'iconColor': Colors.lightBlueAccent,
       },
       {
-        'icon': Icons.phone,
-        'label': '+970-978-76633',
+        'icon': FontAwesomeIcons.phoneVolume,
+        'label': '+970-5978-76633',
         'iconColor': Colors.green,
       },
       {
@@ -60,7 +60,7 @@ class ContactSection extends StatelessWidget {
               color: isDarkMode ? Colors.white : Colors.black,
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -88,7 +88,7 @@ class ContactSection extends StatelessWidget {
                       child: Text(
                         detail['label'],
                         style: TextStyle(
-                          fontSize: screenWidth > 600 ? 18 : 14,
+                          fontSize: screenWidth > 600 ? 24 : 18,
                           color: isDarkMode ? Colors.white70 : Colors.black87,
                         ),
                         overflow: TextOverflow.ellipsis,
