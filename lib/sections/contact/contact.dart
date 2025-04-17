@@ -7,8 +7,6 @@ class ContactSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    // Get the screen width
     final screenWidth = MediaQuery.of(context).size.width;
 
     final isSmallScreen = screenWidth < 600;
@@ -51,13 +49,29 @@ class ContactSection extends StatelessWidget {
                   iconColor: Colors.green.shade600,
                   textColor: Colors.black87,
                 ),
+                const SizedBox(height: 16),
+                ContactDetailsRow(
+                  icon: Icons.web_asset,
+                  label: 'ramiwzayed',
+                  iconColor: Colors.red.shade900,
+                  textColor: Colors.black,
+                ),
+                const SizedBox(height: 16),
+                ContactDetailsRow(
+                  icon: Icons.hub_rounded,
+                  label: 'ramiwzayed',
+                  iconColor: Colors.black,
+                  textColor: Colors.black87,
+                ),
               ],
             )
           else
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Wrap(
+              spacing: 16, // Horizontal spacing between items
+              runSpacing: 16, // Vertical spacing between rows
               children: [
-                Expanded(
+                SizedBox(
+                  width: 250, // Ensure each item has enough space
                   child: ContactDetailsRow(
                     icon: Icons.location_on,
                     label: 'Ramallah, Palestine',
@@ -65,7 +79,8 @@ class ContactSection extends StatelessWidget {
                     textColor: Colors.black87,
                   ),
                 ),
-                Expanded(
+                SizedBox(
+                  width: 250,
                   child: ContactDetailsRow(
                     icon: Icons.email,
                     label: 'ramiwzayed@gmail.com',
@@ -73,11 +88,30 @@ class ContactSection extends StatelessWidget {
                     textColor: Colors.black87,
                   ),
                 ),
-                Expanded(
+                SizedBox(
+                  width: 250,
                   child: ContactDetailsRow(
                     icon: Icons.phone,
                     label: '+970-978-76633',
                     iconColor: Colors.green.shade600,
+                    textColor: Colors.black87,
+                  ),
+                ),
+                SizedBox(
+                  width: 250,
+                  child: ContactDetailsRow(
+                    icon: Icons.web_asset,
+                    label: 'ramiwzayed',
+                    iconColor: Colors.red.shade900,
+                    textColor: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                  width: 250,
+                  child: ContactDetailsRow(
+                    icon: Icons.hub_rounded,
+                    label: 'ramiwzayed',
+                    iconColor: Colors.black,
                     textColor: Colors.black87,
                   ),
                 ),
@@ -97,42 +131,17 @@ class ContactSection extends StatelessWidget {
                     duration: const Duration(seconds: 2),
                     action: SnackBarAction(
                       label: 'Close',
-                      textColor: isDarkMode ? Colors.white : Colors.black,
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                      },
+                      onPressed: () {},
                     ),
                   ),
                 );
               },
-              icon: const Icon(Icons.message, color: Colors.white),
-              label: const Text(
-                'Contact Me',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-              ),
+              icon: Icon(Icons.send),
+              label: Text('Contact Us'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueAccent.shade700,
-                elevation: 6,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 32,
-                  vertical: 16,
-                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               ),
-            ),
-          ),
-          const SizedBox(height: 36),
-          Center(
-            child: Text(
-              '© 2025 Rami Zayed. All Rights Reserved.',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: isDarkMode ? Colors.white : Colors.black,
-              ),
-              textAlign: TextAlign.center,
             ),
           ),
         ],
