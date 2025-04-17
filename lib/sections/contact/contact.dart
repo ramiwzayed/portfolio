@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -41,7 +42,7 @@ class ContactSection extends StatelessWidget {
         'icon': FontAwesomeIcons.facebook,
         'label': 'RamiwZayed',
         'iconColor': Colors.blue,
-        'onTap': () => _launchUrl('https://facebook.com'),
+        'onTap': () => _launchUrl('https://www.facebook.com'),
       },
     ];
 
@@ -103,7 +104,11 @@ class ContactSection extends StatelessWidget {
     );
   }
 
-  void _launchUrl(String url) async {
-    // Placeholder implementation for URL launch
+  static void _launchUrl(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
