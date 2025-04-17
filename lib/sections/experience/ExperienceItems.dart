@@ -12,7 +12,6 @@ class ExperienceItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 16.0),
       decoration: BoxDecoration(
         color: Colors.white.withAlpha(80),
         borderRadius: BorderRadius.circular(15.0),

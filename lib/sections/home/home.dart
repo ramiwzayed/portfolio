@@ -31,7 +31,7 @@ class HeroSection extends StatelessWidget {
                       ),
                       const SizedBox(height: 16.0),
                       Text(
-                        'Rami \nZayed',
+                        'Rami \nZayed'.toUpperCase(),
                         style: TextStyle(
                           fontFamily: 'Orbitron',
                           fontSize: 52,

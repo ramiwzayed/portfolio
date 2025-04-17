@@ -91,7 +91,18 @@ class _MyHomePageState extends State<MyHomePage> {
     final horizontalPadding = !isMobile() ? 150.0 : 16.0;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: widget.isDarkMode ? Colors.white : Colors.white60,
+        backgroundColor: widget.isDarkMode ? Colors.white : Colors.black45,
+        // Change color based on dark mode
+        titleTextStyle: TextStyle(
+          color: !widget.isDarkMode
+              ? Colors.black
+              : Colors.white, // Adjust text color for contrast
+        ),
+        toolbarTextStyle: TextStyle(
+          color: widget.isDarkMode
+              ? Colors.black
+              : Colors.white, // Adjust toolbar text color
+        ),
         actions: !isMobile() ? _buildNavBarActions() : null,
       ),
       drawer: isMobile() ? _buildDrawer() : null,

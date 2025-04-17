@@ -81,7 +81,7 @@ class ContactSection extends StatelessWidget {
                     Icon(
                       detail['icon'],
                       color: detail['iconColor'],
-                      size: screenWidth > 600 ? 40.0 : 30.0,
+                      size: screenWidth > 600 ? 20.0 : 15.0,
                     ),
                     const SizedBox(width: 8),
                     Flexible(

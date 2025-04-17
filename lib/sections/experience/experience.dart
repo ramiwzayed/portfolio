@@ -40,7 +40,7 @@ class ExperienceSection extends StatelessWidget {
                       isDarkMode,
                     ),
                   ),
-                  const SizedBox(width: 16.0),
+                  const SizedBox(width: 32.0),
                   Expanded(
                     child: _buildExperienceCard(
                       experiences[(row * 2) + 1],
@@ -62,6 +62,7 @@ class ExperienceSection extends StatelessWidget {
       onTap: () {},
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+        margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
           color: isDarkMode ? Colors.grey[800] : Colors.grey[300],
