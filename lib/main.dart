@@ -200,11 +200,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String _translateSection(String section) {
     final translations = {
-      'Work': 'عمل',
-      'Education': 'درجة التعليمية',
+      'Work': 'العمل',
+      'Education': 'درجات العلمية ',
       'Experience': 'مهارات',
-      'Contact': 'الاتصال بنا',
-      'Hero': 'البطل',
+      'Contact': ' للاتصال بي',
+      'Hero': 'الصفحة الرئيسية',
     };
     return translations[section] ?? section; // Use translation or fallback
   }
