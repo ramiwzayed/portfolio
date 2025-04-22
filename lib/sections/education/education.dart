@@ -7,16 +7,9 @@ class EducationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get the current theme brightness
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
-    // Get screen width
+    final _ = Theme.of(context).brightness == Brightness.dark;
     final screenWidth = MediaQuery.of(context).size.width;
-
-    // Define the number of items per row based on screen width
     final int itemsPerRow = screenWidth > 600 ? 2 : 1;
-
-    // Sample data for the education items
     final educationItems = [
       const EducationItem(
         degree: 'Information Technology and Communication',
@@ -39,8 +32,6 @@ class EducationSection extends StatelessWidget {
         iconColor: Colors.blueAccent,
       ),
     ];
-
-    // Build rows dynamically
     List<Widget> buildRows(List<EducationItem> items, int itemsPerRow) {
       List<Widget> rows = [];
       for (int i = 0; i < items.length; i += itemsPerRow) {
@@ -57,11 +48,10 @@ class EducationSection extends StatelessWidget {
             ),
           ),
         );
-        rows.add(const SizedBox(height: 24.0)); // Space between rows
+        rows.add(const SizedBox(height: 24.0));
       }
       return rows;
     }
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
       child: Column(
