@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/sections/editing/tittle.dart';
+import 'package:portfolio/widgets/editing/section_tittle.dart';
 import 'education_row.dart';
 
 class EducationSection extends StatelessWidget {
@@ -7,7 +7,7 @@ class EducationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _ = Theme.of(context).brightness == Brightness.dark;
+    // isMobile()
     final screenWidth = MediaQuery.of(context).size.width;
     final int itemsPerRow = screenWidth > 600 ? 2 : 1;
     final educationItems = [
@@ -32,6 +32,8 @@ class EducationSection extends StatelessWidget {
         iconColor: Colors.blueAccent,
       ),
     ];
+
+    // Build rows dynamically
     List<Widget> buildRows(List<EducationItem> items, int itemsPerRow) {
       List<Widget> rows = [];
       for (int i = 0; i < items.length; i += itemsPerRow) {
@@ -40,10 +42,11 @@ class EducationSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(
               itemsPerRow,
-                  (j) => Flexible(
-                child: i + j < items.length
-                    ? items[i + j]
-                    : const SizedBox.shrink(),
+              (j) => Flexible(
+                child:
+                    i + j < items.length
+                        ? items[i + j]
+                        : const SizedBox.shrink(),
               ),
             ),
           ),
@@ -52,17 +55,14 @@ class EducationSection extends StatelessWidget {
       }
       return rows;
     }
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SectionTitle(title: 'Education'),
-          SizedBox(height: 16.0),
-          ...buildRows(educationItems, itemsPerRow)
-        ],
-      ),
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SectionTitle(title: 'Education'),
+        SizedBox(height: 16.0),
+        ...buildRows(educationItems, itemsPerRow),
+      ],
     );
   }
 }
-

@@ -4,17 +4,21 @@ import 'package:portfolio/sections/education/education.dart';
 import 'package:portfolio/sections/experience/experience.dart';
 import 'package:portfolio/sections/home/home.dart';
 import 'package:portfolio/sections/work/work.dart';
+
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
+
 class _MyAppState extends State<MyApp> {
   bool _isDarkMode = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,9 +26,10 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Theme.of(context).brightness == Brightness.dark
-              ? Colors.white
-              : Colors.black,
+          seedColor:
+              Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
         ),
       ),
       darkTheme: ThemeData(
@@ -46,6 +51,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
     super.key,
@@ -61,6 +67,7 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
+
 class _MyHomePageState extends State<MyHomePage> {
   final Map<String, GlobalKey> _sectionKeys = {
     'Work': GlobalKey(),
@@ -69,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Contact': GlobalKey(),
   };
   bool _isEnglish = true;
+
   void _scrollToSection(String section) {
     final context = _sectionKeys[section]?.currentContext;
     if (context != null) {
@@ -79,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     final horizontalPadding = !isMobile() ? 150.0 : 16.0;
@@ -86,14 +95,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: widget.isDarkMode ? Colors.white : Colors.black45,
         titleTextStyle: TextStyle(
-          color: !widget.isDarkMode
-              ? Colors.black
-              : Colors.white,
+          color: !widget.isDarkMode ? Colors.black : Colors.white,
         ),
         toolbarTextStyle: TextStyle(
-          color: widget.isDarkMode
-              ? Colors.black
-              : Colors.white,
+          color: widget.isDarkMode ? Colors.black : Colors.white,
         ),
         actions: [
           if (!isMobile()) ..._buildNavBarActions(),
@@ -122,15 +127,18 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: isMobile() ? _buildDrawer() : null,
       body: SingleChildScrollView(
         child: Padding(
-          padding:
-          EdgeInsets.fromLTRB(horizontalPadding, 0, horizontalPadding, 0),
-          child: Column(
-            children: _buildSections(),
+          padding: EdgeInsets.fromLTRB(
+            horizontalPadding,
+            0,
+            horizontalPadding,
+            0,
           ),
+          child: Column(children: _buildSections()),
         ),
       ),
     );
   }
+
   Widget _buildDrawer() {
     return Drawer(
       child: ListView(
@@ -147,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           ..._sectionKeys.keys.map(
-                (section) => ListTile(
+            (section) => ListTile(
               title: Text(_isEnglish ? section : _translateSection(section)),
               onTap: () {
                 Navigator.pop(context);
@@ -175,19 +183,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
   List<Widget> _buildNavBarActions() {
     return _sectionKeys.keys
         .map(
           (section) => TextButton(
-        onPressed: () => _scrollToSection(section),
-        child: Text(
-          _isEnglish ? section : _translateSection(section),
-          style: const TextStyle(color: Colors.black),
-        ),
-      ),
-    )
+            onPressed: () => _scrollToSection(section),
+            child: Text(
+              _isEnglish ? section : _translateSection(section),
+              style: const TextStyle(color: Colors.black),
+            ),
+          ),
+        )
         .toList();
   }
+
   String _translateSection(String section) {
     final translations = {
       'Work': 'عمل',
@@ -198,28 +208,14 @@ class _MyHomePageState extends State<MyHomePage> {
     };
     return translations[section] ?? section; // Use translation or fallback
   }
+
   List<Widget> _buildSections() {
     return [
-      Container(
-        key: _sectionKeys['Hero'],
-        child: HeroSection(),
-      ),
-      Container(
-        key: _sectionKeys['Work'],
-        child: WorkSection(),
-      ),
-      Container(
-        key: _sectionKeys['Education'],
-        child: EducationSection(),
-      ),
-      Container(
-        key: _sectionKeys['Experience'],
-        child: ExperienceSection(),
-      ),
-      Container(
-        key: _sectionKeys['Contact'],
-        child: ContactSection(),
-      )
+      Container(key: _sectionKeys['Hero'], child: HeroSection()),
+      Container(key: _sectionKeys['Work'], child: WorkSection()),
+      Container(key: _sectionKeys['Education'], child: EducationSection()),
+      Container(key: _sectionKeys['Experience'], child: ExperienceSection()),
+      Container(key: _sectionKeys['Contact'], child: ContactSection()),
     ];
   }
 

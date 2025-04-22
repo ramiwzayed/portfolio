@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../editing/tittle.dart';
+import 'package:portfolio/widgets/editing/section_tittle.dart';
 
 class ExperienceSection extends StatelessWidget {
   const ExperienceSection({super.key});
@@ -17,7 +17,6 @@ class ExperienceSection extends StatelessWidget {
       'WiFi Crack',
     ];
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -51,6 +50,7 @@ class ExperienceSection extends StatelessWidget {
     );
   }
 
+  // remove
   Widget _buildExperienceCard(String experience, bool isDarkMode) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),

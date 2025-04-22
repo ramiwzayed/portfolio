@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Rename
 class DrawerMenu extends StatefulWidget {
   final GlobalKey homeKey;
   final GlobalKey workKey;
@@ -40,16 +41,14 @@ class _DrawerMenuState extends State<DrawerMenu> {
       children: [
         DrawerHeader(
           decoration: BoxDecoration(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? Colors.white
-                : Colors.black,
+            color:
+                Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
           ),
           child: const Text(
             'Menu',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-            ),
+            style: TextStyle(color: Colors.white, fontSize: 24),
           ),
         ),
         ListTile(
