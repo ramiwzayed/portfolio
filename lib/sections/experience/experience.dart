@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../editing/tittle.dart';
+
 class ExperienceSection extends StatelessWidget {
   const ExperienceSection({super.key});
 
@@ -15,19 +17,12 @@ class ExperienceSection extends StatelessWidget {
       'WiFi Crack',
     ];
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            'Experience & Skills',
-            style: TextStyle(
-              fontSize: 32.0,
-              fontWeight: FontWeight.bold,
-              color: isDarkMode ? Colors.white : Colors.black,
-            ),
-          ),
+          const SectionTitle(title: 'Experience & Skills'),
+
           const SizedBox(height: 16.0),
           Column(
             children: List.generate(3, (row) {

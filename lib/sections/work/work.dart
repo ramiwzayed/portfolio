@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../editing/tittle.dart';
+
 class WorkSection extends StatelessWidget {
   const WorkSection({super.key});
 
@@ -8,26 +10,14 @@ class WorkSection extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final screenWidth = MediaQuery.of(context).size.width;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: screenWidth < 600
-            ? 16.0
-            : 32.0, // Adjust padding based on screen width
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(16.0),
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              'My Work Experience',
-              style: TextStyle(
-                fontSize: screenWidth < 600 ? 24 : 32, // Adjust font size
-                fontWeight: FontWeight.bold,
-                color: isDarkMode ? Colors.white : Colors.black,
-              ),
-            ),
+            const SectionTitle(title: 'My Work Experience'),
+
             const SizedBox(height: 16.0),
             Text(
               'The experience has significantly '
@@ -43,7 +33,7 @@ class WorkSection extends StatelessWidget {
             const SizedBox(height: 32.0),
           ],
         ),
-      ),
+
     );
   }
 }

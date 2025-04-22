@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../editing/tittle.dart';
+
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
 
@@ -47,21 +49,15 @@ class ContactSection extends StatelessWidget {
     ];
 
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            'Get in Touch',
-            style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: isDarkMode ? Colors.white : Colors.black,
-            ),
-          ),
-          const SizedBox(height: 8),
-          GridView.builder(
+          const SectionTitle(title: 'Get in Touch'),
+          SizedBox(height: 16.0),
+          SizedBox(height: 8),
+        GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: contactDetails.length,
@@ -99,7 +95,7 @@ class ContactSection extends StatelessWidget {
               );
             },
           ),
-        ],
+],
       ),
     );
   }
@@ -111,4 +107,35 @@ class ContactSection extends StatelessWidget {
       throw 'Could not launch $url';
     }
   }
+List<Widget> buildRows(List<Map<String, dynamic>> contactDetails, int crossAxisCount) {
+  final rows = <Widget>[];
+  for (var i = 0; i < contactDetails.length; i += crossAxisCount) {
+    final rowChildren = contactDetails
+        .skip(i)
+        .take(crossAxisCount)
+        .map((detail) => Flexible(
+              child: GestureDetector(
+                onTap: detail['onTap'] ?? () {},
+                child: Row(
+                  children: [
+                    Icon(
+                      detail['icon'],
+                      color: detail['iconColor'],
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        detail['label'],
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                ],
+                ),
+              ),
+            ))
+        .toList();
+    rows.add(Row(children: rowChildren));
+  }
+  return rows;
+}
 }

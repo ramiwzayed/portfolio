@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'EducationRow.dart';
+import 'package:portfolio/sections/editing/tittle.dart';
+import 'education_row.dart';
 
 class EducationSection extends StatelessWidget {
   const EducationSection({super.key});
@@ -49,7 +49,7 @@ class EducationSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(
               itemsPerRow,
-              (j) => Flexible(
+                  (j) => Flexible(
                 child: i + j < items.length
                     ? items[i + j]
                     : const SizedBox.shrink(),
@@ -66,29 +66,13 @@ class EducationSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(width: 12),
-              Text(
-                'Education',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: isDarkMode ? Colors.white : Colors.black,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          // Group Education Items in rows
-          Column(
-            children: buildRows(educationItems, itemsPerRow),
-          ),
+          const SectionTitle(title: 'Education'),
+          SizedBox(height: 16.0),
+          ...buildRows(educationItems, itemsPerRow)
         ],
       ),
     );
   }
 }
+
