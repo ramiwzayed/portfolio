@@ -26,9 +26,10 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Theme.of(context).brightness == Brightness.dark
-              ? Colors.white
-              : Colors.black,
+          seedColor:
+              Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
         ),
       ),
       darkTheme: ThemeData(
@@ -74,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Experience': GlobalKey(),
     'Contact': GlobalKey(),
   };
+  bool _isEnglish = true;
 
   void _scrollToSection(String section) {
     final context = _sectionKeys[section]?.currentContext;
@@ -92,27 +94,46 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: widget.isDarkMode ? Colors.white : Colors.black45,
-        // Change color based on dark mode
         titleTextStyle: TextStyle(
-          color: !widget.isDarkMode
-              ? Colors.black
-              : Colors.white, // Adjust text color for contrast
+          color: !widget.isDarkMode ? Colors.black : Colors.white,
         ),
         toolbarTextStyle: TextStyle(
-          color: widget.isDarkMode
-              ? Colors.black
-              : Colors.white, // Adjust toolbar text color
+          color: widget.isDarkMode ? Colors.black : Colors.white,
         ),
-        actions: !isMobile() ? _buildNavBarActions() : null,
+        actions: [
+          if (!isMobile()) ..._buildNavBarActions(),
+          IconButton(
+            icon: Icon(Icons.language),
+            onPressed: () {
+              setState(() {
+                _isEnglish = !_isEnglish;
+              });
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Center(
+              child: Text(
+                _isEnglish ? 'EN' : 'AR',
+                style: TextStyle(
+                  color: widget.isDarkMode ? Colors.black : Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       drawer: isMobile() ? _buildDrawer() : null,
       body: SingleChildScrollView(
         child: Padding(
-          padding:
-              EdgeInsets.fromLTRB(horizontalPadding, 0, horizontalPadding, 0),
-          child: Column(
-            children: _buildSections(),
+          padding: EdgeInsets.fromLTRB(
+            horizontalPadding,
+            0,
+            horizontalPadding,
+            0,
           ),
+          child: Column(children: _buildSections()),
         ),
       ),
     );
@@ -126,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
           DrawerHeader(
             decoration: BoxDecoration(color: Colors.blueAccent),
             child: Text(
-              'Menu',
+              _isEnglish ? 'Menu' : 'اقتراحات', // Change text based on language
               style: TextStyle(
                 color: widget.isDarkMode ? Colors.white : Colors.black,
                 fontSize: 24,
@@ -135,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ..._sectionKeys.keys.map(
             (section) => ListTile(
-              title: Text(section),
+              title: Text(_isEnglish ? section : _translateSection(section)),
               onTap: () {
                 Navigator.pop(context);
                 _scrollToSection(section);
@@ -145,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
           const Divider(),
           SwitchListTile(
             title: Text(
-              'Dark Mode',
+              _isEnglish ? 'Dark Mode' : 'وضعية الليلة',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 16,
@@ -168,34 +189,33 @@ class _MyHomePageState extends State<MyHomePage> {
         .map(
           (section) => TextButton(
             onPressed: () => _scrollToSection(section),
-            child: Text(section, style: const TextStyle(color: Colors.black)),
+            child: Text(
+              _isEnglish ? section : _translateSection(section),
+              style: const TextStyle(color: Colors.black),
+            ),
           ),
         )
         .toList();
   }
 
+  String _translateSection(String section) {
+    final translations = {
+      'Work': 'العمل',
+      'Education': 'درجات العلمية ',
+      'Experience': 'مهارات',
+      'Contact': ' للاتصال بي',
+      'Hero': 'الصفحة الرئيسية',
+    };
+    return translations[section] ?? section; // Use translation or fallback
+  }
+
   List<Widget> _buildSections() {
     return [
-      Container(
-        key: _sectionKeys['Hero'],
-        child: HeroSection(),
-      ),
-      Container(
-        key: _sectionKeys['Work'],
-        child: WorkSection(),
-      ),
-      Container(
-        key: _sectionKeys['Education'],
-        child: EducationSection(),
-      ),
-      Container(
-        key: _sectionKeys['Experience'],
-        child: ExperienceSection(),
-      ),
-      Container(
-        key: _sectionKeys['Contact'],
-        child: ContactSection(),
-      )
+      Container(key: _sectionKeys['Hero'], child: HeroSection()),
+      Container(key: _sectionKeys['Work'], child: WorkSection()),
+      Container(key: _sectionKeys['Education'], child: EducationSection()),
+      Container(key: _sectionKeys['Experience'], child: ExperienceSection()),
+      Container(key: _sectionKeys['Contact'], child: ContactSection()),
     ];
   }
 

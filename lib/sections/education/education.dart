@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-
-import 'EducationRow.dart';
+import 'package:portfolio/widgets/section_tittle.dart';
+import 'education_row.dart';
 
 class EducationSection extends StatelessWidget {
   const EducationSection({super.key});
 
+  bool isMobile(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    return screenWidth <= 600; // Mobile breakpoint
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Get the current theme brightness
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-
-    // Get screen width
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    // Define the number of items per row based on screen width
-    final int itemsPerRow = screenWidth > 600 ? 2 : 1;
-
-    // Sample data for the education items
+    // Use the isMobile() method here
+    final int itemsPerRow = isMobile(context) ? 1 : 2;
+    //print(itemsPerRow);
     final educationItems = [
       const EducationItem(
         degree: 'Information Technology and Communication',
@@ -50,45 +48,26 @@ class EducationSection extends StatelessWidget {
             children: List.generate(
               itemsPerRow,
               (j) => Flexible(
-                child: i + j < items.length
-                    ? items[i + j]
-                    : const SizedBox.shrink(),
+                child:
+                    i + j < items.length
+                        ? items[i + j]
+                        : const SizedBox.shrink(),
               ),
             ),
           ),
         );
-        rows.add(const SizedBox(height: 24.0)); // Space between rows
+        rows.add(const SizedBox(height: 24.0));
       }
       return rows;
     }
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(width: 12),
-              Text(
-                'Education',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: isDarkMode ? Colors.white : Colors.black,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          // Group Education Items in rows
-          Column(
-            children: buildRows(educationItems, itemsPerRow),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SectionTitle(title: 'Education'),
+        SizedBox(height: 16.0),
+        ...buildRows(educationItems, itemsPerRow),
+      ],
     );
   }
 }

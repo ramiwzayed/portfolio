@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:portfolio/widgets/section_tittle.dart';
+
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
 
@@ -8,11 +10,11 @@ class HeroSection extends StatelessWidget {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     final screenWidth = MediaQuery.of(context).size.width;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: screenWidth >
-              800 // Check if the screen is wide (e.g., desktop/tablet)
-          ? Row(
+    return Column(
+      children: [
+        screenWidth >
+                800 // Wide screens
+            ? Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -21,23 +23,10 @@ class HeroSection extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Flutter Designer',
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: isDarkMode ? Colors.white : Colors.black,
-                        ),
-                      ),
+                      const SectionTitle(title: 'Flutter Desinger'),
+
                       const SizedBox(height: 16.0),
-                      Text(
-                        'Rami \nZayed'.toUpperCase(),
-                        style: TextStyle(
-                          fontFamily: 'Orbitron',
-                          fontSize: 52,
-                          color: isDarkMode ? Colors.white : Colors.black,
-                        ),
-                      ),
+                      const SectionTitle(title: 'Rami \nZayed'),
                       Text(
                         'I am Rami Zayed. Welcome to my Flutter Page!',
                         style: TextStyle(
@@ -64,7 +53,7 @@ class HeroSection extends StatelessWidget {
                 ),
               ],
             )
-          : Column(
+            : Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ClipRRect(
@@ -76,6 +65,7 @@ class HeroSection extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16.0),
+
                 Text(
                   'Flutter Designer',
                   style: TextStyle(
@@ -106,6 +96,7 @@ class HeroSection extends StatelessWidget {
                 SizedBox(height: 24.0),
               ],
             ),
+      ],
     );
   }
 }

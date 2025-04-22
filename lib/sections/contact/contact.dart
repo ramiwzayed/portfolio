@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:portfolio/widgets/section_tittle.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -46,61 +47,50 @@ class ContactSection extends StatelessWidget {
       },
     ];
 
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'Get in Touch',
-            style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: isDarkMode ? Colors.white : Colors.black,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SectionTitle(title: 'Get in Touch'),
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: contactDetails.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 16.0,
+            mainAxisSpacing: 12.0,
+            childAspectRatio:
+                screenWidth > 600 ? 4 : (screenWidth > 400 ? 3 : 2.5),
           ),
-          const SizedBox(height: 8),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: contactDetails.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 12.0,
-              childAspectRatio:
-                  screenWidth > 600 ? 4 : (screenWidth > 400 ? 3 : 2.5),
-            ),
-            itemBuilder: (context, index) {
-              final detail = contactDetails[index];
-              return GestureDetector(
-                onTap: detail['onTap'] ?? () {},
-                child: Row(
-                  children: [
-                    Icon(
-                      detail['icon'],
-                      color: detail['iconColor'],
-                      size: screenWidth > 600 ? 20.0 : 15.0,
-                    ),
-                    const SizedBox(width: 8),
-                    Flexible(
-                      child: Text(
-                        detail['label'],
-                        style: TextStyle(
-                          fontSize: screenWidth > 600 ? 24 : 18,
-                          color: isDarkMode ? Colors.white70 : Colors.black87,
-                        ),
-                        overflow: TextOverflow.ellipsis,
+          itemBuilder: (context, index) {
+            final detail = contactDetails[index];
+            return GestureDetector(
+              onTap: detail['onTap'], // Add onTap handler here
+              child: Row(
+                children: [
+                  Icon(
+                    detail['icon'],
+                    color: detail['iconColor'],
+                    size: screenWidth > 600 ? 20.0 : 15.0,
+                  ),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: Text(
+                      detail['label'],
+                      style: TextStyle(
+                        fontSize: screenWidth > 600 ? 24 : 18,
+                        color: isDarkMode ? Colors.white70 : Colors.black87,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ],
-                ),
-              );
-            },
-          ),
-        ],
-      ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 
