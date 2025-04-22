@@ -14,7 +14,7 @@ class EducationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     // Use the isMobile() method here
     final int itemsPerRow = isMobile(context) ? 1 : 2;
-    print(itemsPerRow);
+    //print(itemsPerRow);
     final educationItems = [
       const EducationItem(
         degree: 'Information Technology and Communication',
