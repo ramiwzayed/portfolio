@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:portfolio/widgets/editing/section_tittle.dart';
+import 'package:portfolio/widgets/section_tittle.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});

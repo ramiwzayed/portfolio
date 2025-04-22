@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/widgets/editing/section_tittle.dart';
+import 'package:portfolio/widgets/section_tittle.dart';
 import 'education_row.dart';
 
 class EducationSection extends StatelessWidget {

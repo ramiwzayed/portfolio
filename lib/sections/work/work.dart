@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:portfolio/widgets/editing/section_tittle.dart';
+import 'package:portfolio/widgets/section_tittle.dart';
 
 class WorkSection extends StatelessWidget {
   const WorkSection({super.key});
