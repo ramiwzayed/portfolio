@@ -7,7 +7,6 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
     return Column(
