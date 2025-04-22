@@ -5,11 +5,16 @@ import 'education_row.dart';
 class EducationSection extends StatelessWidget {
   const EducationSection({super.key});
 
+  bool isMobile(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    return screenWidth <= 600; // Mobile breakpoint
+  }
+
   @override
   Widget build(BuildContext context) {
-    // isMobile()
-    final screenWidth = MediaQuery.of(context).size.width;
-    final int itemsPerRow = screenWidth > 600 ? 2 : 1;
+    // Use the isMobile() method here
+    final int itemsPerRow = isMobile(context) ? 1 : 2;
+    print(itemsPerRow);
     final educationItems = [
       const EducationItem(
         degree: 'Information Technology and Communication',
